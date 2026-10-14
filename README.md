@@ -1,7 +1,6 @@
 # Assignment2 Innovation Project
-## Section 1: Environment SetUp 
 
-## Section 2: Data Processing 
+## Data Processing 
 
 The phishing detector uses three datasets, download and place them in the same folder as the notebook
 - 'malicious_phish.csv' - Base dataset
@@ -19,7 +18,7 @@ The notebook will perform four things:
 
 The notebook defines phishing as 1, and the other labels (benign, malware, defacement) as 0.
 
-# Section 3: Model training
+# Machine Learning & Model training
 Environment setup
 - set up conda packages in the shell
   ```
