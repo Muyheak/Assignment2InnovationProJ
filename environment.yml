@@ -8,4 +8,4 @@ dependencies:
   - pandas
   - scikit-learn
   - lightgbm
-prefix: /opt/homebrew/Caskroom/miniconda/base/envs/phishing
+
