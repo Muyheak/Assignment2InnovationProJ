@@ -1,7 +1,7 @@
 # Assignment2 Innovation Project
-## Section 1. Environment SetUp 
+## Section 1: Environment SetUp 
 
-## Section 2. Data Processing 
+## Section 2: Data Processing 
 
 The phishing detector uses three datasets, download and place them in the same folder as the notebook
 - 'malicious_phish.csv' - Base dataset
@@ -19,5 +19,25 @@ The notebook will perform four things:
 
 The notebook defines phishing as 1, and the other labels (benign, malware, defacement) as 0.
 
-# Model training
-1. Environment setup
+# Section 3: Model training
+Environment setup
+- set up conda packages in the shell
+  ```
+  conda env create -f environment.yml
+  conda activate phishing
+  ```
+  To execute the testing file via the phishing path
+- create the testing file
+  + baseline.py
+  + cluster.py
+  + compare.py
+  + crosssource.py
+  + save the environment.yml file
+ 
+- baseline.py and compare.py use 200,000 rows of a random sample, then split 80/20.
+- crosssource.py trains on the ISCX and Tranco rows and then uses PhishTank to Test.
+- cluster.py clusters only the phishing rows; K is set by the line K=4 near the top of the file, and the loop tries K=2 to K=8 before deciding to use K=4.
+
+- Runtime for each execution takes about 5-15s 
+
+- Push everything into github
