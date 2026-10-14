@@ -16,7 +16,7 @@ iscx_train, iscx_test = train_test_split(
     iscx, test_size=0.2, stratify=iscx["label"], random_state=42)
 
 tranco = df[df["source"] == "tranco"]
-phish = df[df["source"] == "phishtank"]    # never seen during training
+phish = df[df["source"] == "phishtank"]    # not use in training
 
 # Train WITHOUT any PhishTank rows
 train = pd.concat([iscx_train, tranco]).sample(200000, random_state=42)
@@ -29,7 +29,7 @@ same = recall_score(iscx_test["label"], model.predict(iscx_test[FEATURES]))
 new = (model.predict(phish[FEATURES]) == 1).mean()
 # 3) False alarm rate on held-out safe ISCX URLs
 safe_test = iscx_test[iscx_test["label"] == 0]
-fpr = (model.predict(safe_test[FEATURES]) == 1).mean()
+fpr = (model.predict(safe_test[FEATURES]) == 1).mean() #means of a list is true or false value 
 
 print(f"Recall on ISCX phishing (seen source):      {same:.3f}")
 print(f"Recall on PhishTank phishing (new source):  {new:.3f}")
@@ -39,7 +39,7 @@ print(f"False alarm rate on held-out safe URLs:     {fpr:.3f}")
 phish = phish.copy()
 phish["pred"] = model.predict(phish[FEATURES])
 missed, caught = phish[phish.pred == 0], phish[phish.pred == 1]
-print(f"\nMissed: {len(missed)}  Caught: {len(caught)}")
+print(f"\nMissed: {len(missed)}  Caught: {len(caught)}")  # model guess for each urls and then splits (0 missed), (1 caught)
 
 # Average feature values: missed vs caught PhishTank, and ISCX training phishing
 compare = pd.DataFrame({
@@ -51,14 +51,14 @@ print(compare)
 
 pd.set_option("display.max_colwidth", 100)
 print("\n20 MISSED PhishTank URLs:")
-print(missed["url"].sample(20, random_state=1).to_string())
+print(missed["url"].sample(20, random_state=1).to_string()) # print 20 missed urls
 print("\n10 CAUGHT PhishTank URLs:")
-print(caught["url"].sample(10, random_state=1).to_string())
+print(caught["url"].sample(10, random_state=1).to_string()) #print 10 caught urls
 
 # False positives: safe ISCX URLs flagged as phishing
 fp = safe_test[model.predict(safe_test[FEATURES]) == 1]
 print("\n15 FALSE ALARMS (safe URLs flagged):")
-print(fp["url"].sample(min(15, len(fp)), random_state=1).to_string())
+print(fp["url"].sample(min(15, len(fp)), random_state=1).to_string()) #print 15 false alarms
 
 # Which registered domains do missed vs caught URLs sit on?
 def reg_domain(urls):

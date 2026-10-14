@@ -1,0 +1,11 @@
+name: phishing
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - xgboost
+  - matplotlib
+  - pandas
+  - scikit-learn
+  - lightgbm
+prefix: /opt/homebrew/Caskroom/miniconda/base/envs/phishing
