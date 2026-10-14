@@ -17,4 +17,7 @@ The notebook will perform four things:
 - Normalization: It normalize each URL so they all have the same structure by decoding percent-encoding, lowercasing the scheme, and also adds a default scheme if it is missing 
 -Feature extraction: it applies the extract_features(url) function to all of the rows, which produces 16 numeric features that is used for modelling 
 
-The notebook defines phishing as 1, and the other labels (benign, malware, defacement) as 0. 
+The notebook defines phishing as 1, and the other labels (benign, malware, defacement) as 0.
+
+# Model training
+1. Environment setup
